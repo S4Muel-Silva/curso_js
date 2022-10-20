@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anotações 1</title>
+    <style>
+        body {
+            text-align: center;
+            font: normal 15pt Arial;
+            background-color: aqua;
+        }
+
+        div {
+
+            background-color: aquamarine;
+            margin: 20px;
+            padding: 10px;
+            border: 2px solid;
+        }
+
+        .caixas {
+            font: normal 20pt Arial;
+            width: 300px;
+            height: 200px;
+            line-height: 200px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="principal">
+        <h1>Compilado dos Comandos passados até a aula 10 (fim do módulo C)</h1>
+        <div id="div1">
+            <input type="button" value="alert" onclick="alerta()">
+            <input type="button" value="confirm" onclick="confirma()">
+            <input type="button" value="prompt" onclick="caixatexto()">
+        </div>
+        <div id="div2">
+            <input type="button" value="concatenação normal" onclick="concatNormal()">
+            <input type="button" value="concatenação com template string" onclick="concatTemplString()">
+            <br />
+            <input type="button" value="nome" onclick="concnome()">
+        </div>
+        <div id="div3">
+            <input type="button" value="soma no prompt" onclick="somaprompt()">
+            <input type="button" value="nome" onclick="texto1()">
+        </div>
+        <div id="div4">
+            <p class="txtprincipal" id="txtpr">esse texto será escrito quando clicar no botão</p>
+
+            <button onclick="bt1()">classe</button>
+            <button onclick="bt2()">id</button>
+            <button onclick="bt3()">tag name</button>
+            <button onclick="bt4()">query selector</button>
+        </div>
+        <div id="div5">
+            <button class="caixas" id="c1">caixa que muda de cor</button>
+        </div>
+        <div id="div6">
+            <h1>Somando valores</h1>
+            <input type="number" name="txtn1" id="txtn1"> +
+            <input type="number" name="txtn2" id="txtn2">
+            <input type="button" value="somar" onclick="somar()">
+
+            <div id="res">
+                resultado
+            </div>
+        </div>
+
+        <script id="script1">
+            //---------------funções da primeira div---------------
+            function alerta() {
+                alert('isso é um alert')
+            }
+
+            function confirma() {
+                confirm('isso é um confirm')
+            }
+
+            function caixatexto() {
+                window.prompt('isso é um prompt') //o window é opcional
+            }
+        </script>
+        <script id="script2">
+            //---------------funções da segunda div---------------
+            var concatenacao = 'concatenação'
+
+            function concatNormal() {
+                window.alert('isso é uma ' + concatenacao + ' normal')
+            }
+
+            function concatTemplString() {
+                alert(`isso é uma ${concatenacao} com template string`)
+            }
+
+            function concnome() {
+                var concnome = window.prompt('digite aqui o seu nome')
+                window.alert(`Olá, ${concnome}! Prazer em te conhecer.`)
+            }
+        </script>
+        <script id="script3">
+            //---------------funções da terceira div---------------
+            function somaprompt() {
+                var num = Number.parseInt(window.prompt('digite um numero'))
+                //Number.parseFloat para números reais, ou apenas Number
+                var num2 = Number(window.prompt('digite outro numero'))
+                //pra converter de number para string: String(n) ou n.toString()
+                soma = num + num2
+                window.alert(`a soma dos numeros ${num} e ${num2} é igual a ${soma}`)
+            }
+
+            function texto1() {
+                var nome = window.prompt('Qual é seu nome?')
+                document.write(`Olá, ${nome}! seu nome tem ${nome.length} letras.<br/>`)
+                document.write(`nome em maiúsculas é ${nome.toUpperCase()}<br/>`)
+                document.write(`nome em minúsculas é ${nome.toLowerCase()}<br/>`)
+                // numero.toFixed(outro numero) fixa uma quantidade específica de casas decimais em um number
+                // .toFixed(2).replace('.' , ',') troca o ponto pela vírgula em números reais 
+                //a.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})
+            }
+        </script>
+        <script id="script4">
+            //---------------funções da quarta div---------------
+            function bt1() {
+                var f4var1 = document.getElementsByClassName('txtprincipal')[0]
+                window.alert(`${f4var1.innerText} (usando getElementsByClassName)`)
+            }
+
+            function bt2() {
+                var f4var2 = document.getElementById('txtpr')
+                window.alert(`${f4var2.innerText} (usando getElementById)`)
+            }
+
+            function bt3() {
+                var f4var3 = document.getElementsByTagName('p')[0]
+                window.alert(`${f4var3.innerText} (usando getElementsByTagName)`)
+            }
+
+            function bt4() {
+                var f4var4 = document.querySelector('p#txtpr')
+                window.alert(`${f4var4.innerText} (usando querySelector)`)
+            }
+        </script>
+        <script id="script5">
+            //---------------funções da quinta div---------------
+            var a = window.document.getElementById('c1')
+
+            a.addEventListener('click', clicar)
+            a.addEventListener('mouseenter', entrar)
+            a.addEventListener('mouseout', sair)
+
+            function clicar() {
+                a.style.backgroundColor = 'red'
+                a.innerText = 'quando clica'
+            }
+
+            function entrar() {
+                a.style.backgroundColor = 'green'
+                a.innerText = 'quando passa o mouse'
+            }
+
+            function sair() {
+                a.style.backgroundColor = 'yellow'
+                a.innerText = 'quando o mouse sai'
+            }
+        </script>
+        <script id="script6">
+            //---------------funções da sexta div---------------
+            function somar() {
+            var tn1 = window.document.getElementById('txtn1')
+            var tn2 = window.document.querySelector('input#txtn2')
+            var res = window.document.getElementById('res')
+
+            var n1 = Number(tn1.value)
+            var n2 = Number(tn2.value)
+
+            var s = n1+n2
+            res.innerHTML = `a soma entre ${n1} e ${n2} é : <strong>${s}</strong>`
+            }
+        </script>
+        <!--compilado001 concluído-->
+    </div>
+</body>
+
+</html>
